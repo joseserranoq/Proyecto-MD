@@ -9,8 +9,6 @@ class Operaciones():
         #Es el iniciador de la clase, contiene los datos principales que se utilizaran en las funciones contenidas en esta clase.
         #Parametros: filas,columnas,set.
         #Return None
-
-
         self.filas = filas
         self.columnas = columnas
         self.set = set 
@@ -129,8 +127,29 @@ class Operaciones():
         
         else:
             return print(False)
-                
-                
+
+    def es_equivalencia(self) -> bool:
+        transitiva = self.Transitiva()         
+        simetrica = self.Simetria()
+        reflexiva = self.Reflexiva()
+        if transitiva & simetrica & reflexiva:
+            return print(True)
+        else:
+            return print(False)
+
+    def clase_equivalencia(self, x) -> list:
+        claseDeEquivalencia = []
+        for i in self.set:
+            if i[0] == x and i[1] not in claseDeEquivalencia:
+                claseDeEquivalencia.append(i[1])
+            
+        return print(claseDeEquivalencia)
+
+    def es_antisimetrica(self) -> bool:
+        if self.Simetria != True:
+
+            return print(True)
+        return print(False)       
 
                 
 
@@ -138,18 +157,21 @@ class Operaciones():
 A = Operaciones([1, 2, 3, 4], [2, 4, 6, 8], {(1,2), (1,6), (2,4), (3,4), (3,6), (4,2), (4,8)})
 B = Operaciones([1, 2, 3, 4], [], {(1,1), (2,2), (3,3), (4,4)})
 C = Operaciones([1,2,3,4],[],{(1,1),(1,4),(2,2),(2,4),(3,3),(4,4)})
+D = Operaciones([1,2,3,4],[],{(1,1), (2,3)})
+D.Simetria()
+A.clase_equivalencia(1)
+D.es_antisimetrica()
+# A.Imprime_matriz()
+# A.Reflexiva()
+# A.Simetria()
+# A.Transitiva()
 
-A.Imprime_matriz()
-A.Reflexiva()
-A.Simetria()
-A.Transitiva()
+# B.Imprime_matriz()
+# B.Reflexiva()
+# B.Simetria()
+# B.Transitiva()
 
-B.Imprime_matriz()
-B.Reflexiva()
-B.Simetria()
-B.Transitiva()
-
-C.Imprime_matriz()
-C.Reflexiva()
-C.Simetria()
-C.Transitiva()
+# C.Imprime_matriz()
+# C.Reflexiva()
+# C.Simetria()
+# C.Transitiva()
