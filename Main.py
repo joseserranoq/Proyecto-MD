@@ -149,15 +149,30 @@ class Operaciones():
         if self.Simetria != True:
 
             return print(True)
-        return print(False)       
+        return print(False)
 
-                
+    def es_total(self):
+        # Autor: Katherine Amador González
+        # Realizado: 09/06/21
+        if self.filas == self.columnas or self.columnas == []:
+            for x in range(0, len(self.filas)):
+                for i in range(0, len(self.filas)):
+                    if (self.filas[x], self.filas[i]) in self.set:
+                        pass
+                    elif (self.filas[i], self.filas[x]) in self.set:
+                        pass
+                    else:
+                        return print(False)
+            return print(True)
+        else:
+            return print(False)
 
-                
+
 A = Operaciones([1, 2, 3, 4], [2, 4, 6, 8], {(1,2), (1,6), (2,4), (3,4), (3,6), (4,2), (4,8)})
 B = Operaciones([1, 2, 3, 4], [], {(1,1), (2,2), (3,3), (4,4)})
 C = Operaciones([1,2,3,4],[],{(1,1),(1,4),(2,2),(2,4),(3,3),(4,4)})
 D = Operaciones([1,2,3,4],[],{(1,1), (2,3)})
+E = Operaciones([1,2,3],[],{(1,1),(2,2),(3,3),(1,2),(1,3),(2,3)})
 D.Simetria()
 A.clase_equivalencia(1)
 D.es_antisimetrica()
@@ -165,6 +180,12 @@ D.es_antisimetrica()
 # A.Reflexiva()
 # A.Simetria()
 # A.Transitiva()
+
+#A.es_total()
+#B.es_total()
+#C.es_total()
+#D.es_total()
+#E.es_total()
 
 # B.Imprime_matriz()
 # B.Reflexiva()
