@@ -80,15 +80,14 @@ class Operaciones():
         #Se utiliza para saber si el conjunto asignado es reflexivo, se verifican que todos los elementos del dominio esten contenidos en la grafica de la relacion.
         if self.columnas == [] or self.filas == self.columnas:
             for i in self.filas:
-                if  (i,i) in self.set:
-                    pass
-                
-                else:
-                    return print(False) 
-                                       
-            return print(True)                    
+                if  (i,i) not in self.set:
+                    print(False)
+                    return False
+            print(True)                           
+            return True                     
         else:
-            return print(False)
+            print(False)
+            return False 
     
     def Simetria(self) -> bool:
         #Autor: Jose Serrano Quesada
@@ -96,16 +95,14 @@ class Operaciones():
         #Se verifica que si hay aRb tambien haya bRa, mediante un recorrido en el grafico de la relacion y condicionales que determinan si bRa se encuentra en la grafica tambien.
         if self.columnas == [] or self.filas == self.columnas:
             for i in self.set:
-                if i[0] == i[1]:
-                    pass
-                elif i[0] != i[1] and (i[1],i[0]) in self.set:
-                    pass
-                else:
-                    return print(False)
-            return print(True)
-
+                if (i[1],i[0]) not in self.set:
+                    print(False)
+                    return False
+            print(True)
+            return True            
         else:
-            return print(False)
+            print(False)
+            return False
 
     def Transitiva(self) -> bool: 
         #Autor: Jose Serrano Quesada
@@ -116,28 +113,29 @@ class Operaciones():
                 #Valor a buscar i1[0]
                 for i2 in self.set:
                     #Buscamos bRc,si esta entonces buscamos aRc se encuentra en diccionario de tuplas.
-                    if i1[1] == i2[0] and (i1[0],i2[1]) in self.set:
-                        pass
-                    #Si el valor es diferente de aRi1[0] y i2[1]Rc.
-                    elif i1[1] != i2[0]:
-                        pass
-                    else:
-                        return print(False)
-                return print(True)
+                    if i1[1] == i2[0] and (i1[0],i2[1]) not in self.set:
+                        print(False)
+                        return False
+
+            print(True)
+            return True 
         
         else:
-            return print(False)
+            print(False)
+            return False
 
     def es_equivalencia(self) -> bool:
         transitiva = self.Transitiva()         
         simetrica = self.Simetria()
         reflexiva = self.Reflexiva()
         if transitiva & simetrica & reflexiva:
-            return print(True)
+            print(True)
+            return True 
         else:
-            return print(False)
+            print(False)
+            return False 
 
-    def clase_equivalencia(self, x) -> list:
+    def clase_equivalencia(self, x: int) -> list:
         claseDeEquivalencia = []
         for i in self.set:
             if i[0] == x and i[1] not in claseDeEquivalencia:
@@ -146,32 +144,40 @@ class Operaciones():
         return print(claseDeEquivalencia)
 
     def es_antisimetrica(self) -> bool:
-        if self.Simetria != True:
+        #Autor:Diego Carrillo, Jose Serrano(observación)
+        #Realizado: 
+        #Observación: antisimetría se puede cumplir incluso si la función también es simétrica.
+        #Se hace un recorrido for del grafico de la relación donde mediante la contrapositiva se determina si es antisimétrica.
+        for i in self.set:
+            if (i[1],i[0]) in self.set and i[0] != i[1]: #Se produce la contrapositiva
+                return False
+        print(True)    
+        return True       
 
-            return print(True)
-        return print(False)       
-
-                
-
-                
+                            
 A = Operaciones([1, 2, 3, 4], [2, 4, 6, 8], {(1,2), (1,6), (2,4), (3,4), (3,6), (4,2), (4,8)})
 B = Operaciones([1, 2, 3, 4], [], {(1,1), (2,2), (3,3), (4,4)})
 C = Operaciones([1,2,3,4],[],{(1,1),(1,4),(2,2),(2,4),(3,3),(4,4)})
 D = Operaciones([1,2,3,4],[],{(1,1), (2,3)})
-D.Simetria()
-A.clase_equivalencia(1)
-D.es_antisimetrica()
-# A.Imprime_matriz()
-# A.Reflexiva()
-# A.Simetria()
-# A.Transitiva()
+E = Operaciones([1,2,3],[],{(1,1),(2,2),(3,3),(1,2),(1,3),(2,3)})
+#A.Imprime_matriz()
+#A.Reflexiva()
+#A.Simetria()
+#A.Transitiva()
+#A.clase_equivalencia(1)
+#A.es_equivalencia()
+E.es_total()
 
-# B.Imprime_matriz()
-# B.Reflexiva()
-# B.Simetria()
-# B.Transitiva()
+#B.Imprime_matriz()
+#B.Reflexiva()
+#B.Simetria()
+#B.Transitiva()
 
 # C.Imprime_matriz()
-# C.Reflexiva()
-# C.Simetria()
-# C.Transitiva()
+#C.Reflexiva()
+#C.Simetria()
+#C.Transitiva()
+
+#D.Transitiva()
+#D.es_antisimetrica()
+#D.Simetria()
