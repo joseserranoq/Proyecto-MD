@@ -152,7 +152,23 @@ class Operaciones():
             if (i[1],i[0]) in self.set and i[0] != i[1]: #Se produce la contrapositiva
                 return False
         print(True)    
-        return True       
+        return True
+
+    def es_total(self):
+        # Autor: Katherine Amador González y Jose Serrano
+        # Realizado: 09/06/21
+        if self.filas == self.columnas or self.columnas == []:
+            for x in range(0, len(self.filas)):
+                for i in range(0, len(self.filas)):
+                    if (self.filas[x], self.filas[i]) in self.set:
+                        pass
+                    elif (self.filas[i], self.filas[x]) in self.set:
+                        pass
+                    else:
+                        return print(False)
+            return print(True)
+        else:
+            return print(False)
 
                             
 A = Operaciones([1, 2, 3, 4], [2, 4, 6, 8], {(1,2), (1,6), (2,4), (3,4), (3,6), (4,2), (4,8)})
@@ -166,7 +182,13 @@ E = Operaciones([1,2,3],[],{(1,1),(2,2),(3,3),(1,2),(1,3),(2,3)})
 #A.Transitiva()
 #A.clase_equivalencia(1)
 #A.es_equivalencia()
-E.es_total()
+
+
+# A.es_total()
+# B.es_total()
+# C.es_total()
+# D.es_total()
+# E.es_total()
 
 #B.Imprime_matriz()
 #B.Reflexiva()
