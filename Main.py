@@ -186,13 +186,16 @@ class Metodos():
             if self.es_orden() == True:
                 for x in range(0, len(self.filas)):
                     for i in range(0, len(self.filas)):
+                        #Debido a un error se debe de realizar los condicionales de la siguiente manera. Para mostrar la contrapositiva.
                         if (self.filas[x], self.filas[i]) in self.set:
-                            pass
+                            if (self.filas[i], self.filas[x]) in self.set and self.filas[i] != self.filas[x]:    
+                                return False
                         elif (self.filas[i], self.filas[x]) in self.set:
-                            pass
-                        else:
-                            #print(False)
-                            return False
+                            if (self.filas[x], self.filas[i]) in self.set and self.filas[i] != self.filas[x]:
+                                return False
+
+                        
+                        
                 #print(True)
                 return True
         else:
@@ -324,8 +327,8 @@ E = Metodos([1,2,3],[],{(1,1),(2,2),(3,3),(1,2),(1,3),(2,3)})
 #print(C-D)
 #print(A<=B)
 #print(A*D)
-
-''' Ejemplos utilizados
+'''
+ #Ejemplos utilizados
 A.Imprime_matriz()
 print(f'\nReflexiva:\n{A.Reflexiva()}\nSimetría:\n{A.Simetria()}\nTransitiva:\n{A.Transitiva()}\nEquivalencia:\n{A.es_equivalencia()}\nClase de equivalencia de un número:\n{A.clase_equivalencia(2)}\nAntisimétrica:\n{A.es_antisimetrica()}\nOrden:\n{A.es_orden()}\nTotal:\n{A.es_total()}\nClases de equivalencia')
 A.clases_equivalencia()
