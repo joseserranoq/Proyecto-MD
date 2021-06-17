@@ -149,13 +149,17 @@ class Metodos():
             return False 
 
     def clase_equivalencia(self, x: int) -> list:
+        if self.es_equivalencia():
 
-        claseDeEquivalencia = []
-        for i in self.set:
-            if i[0] == x and i[1] not in claseDeEquivalencia:
-                claseDeEquivalencia.append(i[1])
-        #print(claseDeEquivalencia)    
-        return claseDeEquivalencia 
+            claseDeEquivalencia = []
+            for i in self.set:
+                if i[0] == x and i[1] not in claseDeEquivalencia:
+                    claseDeEquivalencia.append(i[1])
+            #print(claseDeEquivalencia)    
+            return claseDeEquivalencia 
+        else: 
+            noeq= 'No es equivalente'
+            return noeq
 
     def es_antisimetrica(self) -> bool:
         #Autor:Diego Carrillo, Jose Serrano(observación)
@@ -176,6 +180,8 @@ class Metodos():
             else: 
                 #print(False)
                 return False
+        else: 
+            return False
 
     def es_total(self)-> bool:
         # Autor: Katherine Amador González y Jose Serrano
@@ -183,16 +189,14 @@ class Metodos():
         #Determina si la funcion es de orden, entonces puede ser total, mediante la contrapositiva de la relacion de orden, para determinar si es verdadera o falsa.
         #Return Booleano
         if self.filas == self.columnas or self.columnas == []:
-            if self.es_orden() == True:
+            if self.es_orden():
                 for x in range(0, len(self.filas)):
                     for i in range(0, len(self.filas)):
                         #Debido a un error se debe de realizar los condicionales de la siguiente manera. Para mostrar la contrapositiva.
-                        if (self.filas[x], self.filas[i]) in self.set:
-                            if (self.filas[i], self.filas[x]) in self.set and self.filas[i] != self.filas[x]:    
-                                return False
+                        if (self.filas[x], self.filas[i]) in self.set:   
+                            return False
                         elif (self.filas[i], self.filas[x]) in self.set:
-                            if (self.filas[x], self.filas[i]) in self.set and self.filas[i] != self.filas[x]:
-                                return False
+                            return False
 
                         
                         
@@ -207,14 +211,18 @@ class Metodos():
         #Realizado: 15/6/21
         #Tiene como funcion devolver todas las clases de equivalencia de los elementos.
         # Return None 
-        lista = list()
-        for i in self.filas:
-            x  = self.clase_equivalencia(i)
-            x.sort()   
-            lista.append(x)
-        for i2 in range(len(lista)):
-            print(f'{self.filas[i2]} = {lista[i2]}') 
-        return 
+        if self.es_equivalencia():
+            lista = list()
+            for i in self.filas:
+                x  = self.clase_equivalencia(i)
+                x.sort()   
+                lista.append(x)
+            for i2 in range(len(lista)):
+                print(f'{self.filas[i2]} = {lista[i2]}') 
+             
+        else:
+            print('No es equivalente')
+        return
 
     def __neg__(self)->list:
         #Autor:Diego Carrillo, Jose Serrano
@@ -327,6 +335,7 @@ E = Metodos([1,2,3],[],{(1,1),(2,2),(3,3),(1,2),(1,3),(2,3)})
 #print(C-D)
 #print(A<=B)
 #print(A*D)
+#print(A.es_orden())
 '''
  #Ejemplos utilizados
 A.Imprime_matriz()
